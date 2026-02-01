@@ -1,4 +1,108 @@
-/* --- General Reset and Styles --- */
+/* style.css */
+/* --- RESPONSIVE DESIGN (MOBILE) --- */
+@media screen and (max-width: 768px) {
+
+    /* 1. Navbar Adjustments */
+    .nav-links {
+        position: fixed;
+        right: -100%;
+        /* Hide menu off-screen by default */
+        top: 70px;
+        /* Push down below the navbar header */
+        height: calc(100vh - 70px);
+        width: 100%;
+        /* Full width menu */
+        background-color: #1a2533;
+        flex-direction: column;
+        /* Stack links vertically */
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 50px;
+        transition: right 0.3s ease-in-out;
+        z-index: 99;
+    }
+
+    /* Class to show menu when active */
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 20px 0;
+    }
+
+    /* 2. Hamburger Menu Styling */
+    .hamburger {
+        display: block;
+        /* Show hamburger on mobile */
+        cursor: pointer;
+    }
+
+    .hamburger .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: white;
+        transition: all 0.3s ease;
+    }
+
+    /* Hamburger Animation (Optional) */
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* 3. Button Visibility */
+    .desktop-btn {
+        display: none;
+    }
+
+    /* Hide desktop login button */
+    .mobile-btn {
+        display: inline-block;
+    }
+
+    /* Show mobile login button */
+
+    /* 4. Fix Huge Text (The main issue in your screenshot) */
+    .caption {
+        font-size: 1.8rem;
+        /* Reduce from 3rem to 1.8rem */
+        width: 90%;
+        /* Prevent text touching edges */
+        line-height: 1.3;
+    }
+
+    /* 5. Logo Adjustment */
+    .logo-text {
+        font-size: 0.9rem;
+    }
+
+    .logo-icon {
+        font-size: 1.5rem;
+    }
+}
+
+/* Base Styles needed for the above to work (Add these if missing) */
+.hamburger {
+    display: none;
+}
+
+/* Hidden on desktop */
+.mobile-btn {
+    display: none;
+}
+
+/* Hidden on desktop */
+/* --- General Reset --- */
 * {
     margin: 0;
     padding: 0;
@@ -8,6 +112,8 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f4f4f4;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll on mobile */
 }
 
 .container {
@@ -16,15 +122,14 @@ body {
     padding: 0 20px;
 }
 
-/* --- Navbar Styling (Matching image_0.png) --- */
+/* --- Navbar Styling --- */
 .navbar {
     background-color: #1a2533;
-    /* Dark blue background */
     padding: 1rem 0;
     color: white;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .nav-flex {
@@ -33,19 +138,19 @@ body {
     align-items: center;
 }
 
-/* Logo Styling */
 .logo {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: white;
+    z-index: 1001;
+    /* Ensure logo stays above mobile menu */
 }
 
 .logo-icon {
     font-size: 2rem;
     margin-right: 10px;
     color: #e67e22;
-    /* Orange accent color */
 }
 
 .logo-text {
@@ -54,17 +159,16 @@ body {
     text-transform: uppercase;
 }
 
-/* Nav Links Styling */
 .nav-links {
     list-style: none;
     display: flex;
     gap: 25px;
+    align-items: center;
 }
 
 .nav-links li a {
     text-decoration: none;
     color: #b0b8c4;
-    /* Lighter gray-blue for inactive links */
     font-weight: 500;
     transition: color 0.3s ease;
 }
@@ -74,10 +178,9 @@ body {
     color: white;
 }
 
-/* Button Styling */
+/* Desktop Button */
 .btn-quote {
     background-color: #e67e22;
-    /* Orange color from the image */
     color: white;
     padding: 10px 25px;
     text-decoration: none;
@@ -88,37 +191,36 @@ body {
 
 .btn-quote:hover {
     background-color: #d35400;
-    /* Darker orange on hover */
 }
 
+/* Hide Mobile Elements by default */
+.menu-toggle {
+    display: none;
+}
 
-/* --- Carousel Section Styling --- */
+.btn-quote-mobile {
+    display: none;
+}
+
+/* --- Carousel Styling --- */
 .carousel-section {
     position: relative;
     width: 100%;
-    /* Height depends on your design preferences, 
-       using viewport height minus navbar height roughly */
     height: calc(100vh - 80px);
+    /* Full viewport height minus navbar */
+    min-height: 400px;
+    /* Minimum height for mobile */
     overflow: hidden;
     background-color: #333;
 }
 
-.carousel-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-/* Style for individual slides */
 .slide {
     display: none;
-    /* Hidden by default */
     position: absolute;
     width: 100%;
     height: 100%;
 }
 
-/* Class added by JS to show the current slide */
 .active-slide {
     display: block;
 }
@@ -127,12 +229,9 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Ensures images fill the space without stretching */
     filter: brightness(0.7);
-    /* Darken images slightly so text pops */
 }
 
-/* Optional Caption Styling */
 .caption {
     position: absolute;
     top: 50%;
@@ -143,50 +242,108 @@ body {
     font-weight: 700;
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    width: 80%;
+    width: 90%;
 }
 
-/* Carousel Controls Styling */
 .carousel-controls {
     position: absolute;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 10px 20px;
-    border-radius: 30px;
+    display: flex;
+    gap: 10px;
 }
 
 .control-btn {
-    background: none;
+    background: rgba(0, 0, 0, 0.5);
     border: 2px solid white;
     color: white;
     padding: 8px 15px;
-    margin: 0 5px;
     cursor: pointer;
     font-size: 1rem;
     border-radius: 20px;
     transition: all 0.3s ease;
 }
 
-.control-btn:hover {
-    background-color: white;
-    color: #1a2533;
-}
+/* --- MOBILE RESPONSIVENESS (The Magic Part) --- */
+@media screen and (max-width: 768px) {
 
-/* Fading animation effect */
-.fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-
-@keyframes fade {
-    from {
-        opacity: .4
+    /* 1. Navbar Adjustments */
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        z-index: 1001;
     }
 
-    to {
-        opacity: 1
+    .menu-toggle .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        transition: all 0.3s ease-in-out;
+        background-color: white;
+    }
+
+    /* Transform the hamburger into an X when active */
+    .menu-toggle.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-links {
+        position: fixed;
+        background: #1a2533;
+        top: 0;
+        right: -100%;
+        /* Hide off-screen */
+        width: 70%;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        transition: right 0.4s ease;
+        z-index: 1000;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-links.active {
+        right: 0;
+        /* Slide in */
+    }
+
+    /* 2. Login Button Adjustments */
+    .desktop-only {
+        display: none;
+    }
+
+    .btn-quote-mobile {
+        display: inline-block;
+        background-color: #e67e22;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+    /* 3. Typography Adjustments */
+    .caption {
+        font-size: 1.8rem;
+        /* Smaller font for mobile */
+        width: 95%;
+    }
+
+    .logo-icon {
+        font-size: 1.5rem;
+    }
+
+    .logo-text {
+        font-size: 0.9rem;
     }
 }
