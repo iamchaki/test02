@@ -1,5 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Get DOM elements
+
+    // ==========================================
+    // 1. MOBILE MENU LOGIC
+    // ==========================================
+
+    // Get menu DOM elements
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    // Toggle menu state on hamburger click
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('is-active');
+            navLinks.classList.toggle('active');
+        });
+    }
+
+    // Close menu automatically when a user clicks a link (UX improvement)
+    document.querySelectorAll('.nav-links li a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (menuToggle && navLinks) {
+                menuToggle.classList.remove('is-active');
+                navLinks.classList.remove('active');
+            }
+        });
+    });
+
+    // ==========================================
+    // 2. CAROUSEL / SLIDESHOW LOGIC
+    // ==========================================
+
+    // Get carousel DOM elements
     const slides = document.querySelectorAll('.slide');
     const playBtn = document.getElementById('playBtn');
     const pauseBtn = document.getElementById('pauseBtn');
@@ -27,7 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Show the targeted slide
-        slides[currentSlideIndex].classList.add('active-slide');
+        // Check if slides exist to avoid errors if array is empty
+        if (slides.length > 0) {
+            slides[currentSlideIndex].classList.add('active-slide');
+        }
     }
 
     // Function to move to the next slide
@@ -40,9 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isPlaying) {
             slideInterval = setInterval(nextSlide, slideIntervalTime);
             isPlaying = true;
-            // Toggle button visibility
-            playBtn.style.display = 'none';
-            pauseBtn.style.display = 'inline-block';
+
+            // Toggle button visibility safely
+            if (playBtn) playBtn.style.display = 'none';
+            if (pauseBtn) pauseBtn.style.display = 'inline-block';
         }
     }
 
@@ -51,18 +86,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isPlaying) {
             clearInterval(slideInterval);
             isPlaying = false;
-            // Toggle button visibility
-            pauseBtn.style.display = 'none';
-            playBtn.style.display = 'inline-block';
+
+            // Toggle button visibility safely
+            if (pauseBtn) pauseBtn.style.display = 'none';
+            if (playBtn) playBtn.style.display = 'inline-block';
         }
     }
 
-    // Event Listeners for controls
-    playBtn.addEventListener('click', startSlideshow);
-    pauseBtn.addEventListener('click', pauseSlideshow);
+    // Event Listeners for controls (check if buttons exist first)
+    if (playBtn) playBtn.addEventListener('click', startSlideshow);
+    if (pauseBtn) pauseBtn.addEventListener('click', pauseSlideshow);
 
     // Initialize: Start the slideshow automatically on load
     // We set isPlaying to false initially so startSlideshow logic runs correctly
     isPlaying = false;
-    startSlideshow();
+
+    // Only start slideshow if there are slides present
+    if (slides.length > 0) {
+        startSlideshow();
+    }
 });
