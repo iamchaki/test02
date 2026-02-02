@@ -62,6 +62,45 @@
             </div>
         </div>
     </section>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<section class="commitment-section">
+    <div class="container">
+        <div class="commitment-wrapper">
+            <div class="commitment-text">
+                <h2 class="section-heading-left">OUR COMMITMENT TO<br>EXCELLENCE</h2>
+                <p>
+                    Urban Builders has successfully completed over 2,977 construction projects
+                    and campaigns in Residential and Infrastructure projects. We adhere to
+                    strict environmental compliance while maintaining the highest safety standards
+                    in every connection. We value the former agreements and deliver reliable solutions
+                    spanning across generations and programs.
+                </p>
+            </div>
+            <div class="commitment-image">
+                <img src="/images/slide3.jpg" alt="Construction Team Planning"> 
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="expertise-section">
+    <div class="container">
+        <h2 class="section-heading-center">OUR EXPERTISE</h2>
+        
+        <div class="expertise-grid">
+            <% expertise.forEach(function(item) { %>
+                <div class="expertise-card">
+                    <div class="icon-box">
+                        <i class="fa-solid <%= item.icon %>"></i>
+                    </div>
+                    <h3><%= item.title %></h3>
+                    <p><%= item.desc %></p>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</section>
 
     <script src="script.js"></script>
 </body>
