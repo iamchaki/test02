@@ -65,9 +65,3 @@ document.addEventListener('DOMContentLoaded', () => {
     isPlaying = false;
     startSlideshow();
 });
-// Expertise Data
-const expertiseData = [
-    { icon: 'fa-home', title: 'Residential Construction', desc: '...' },
-    { icon: 'fa-building', title: 'Commercial Development', desc: '...' },
-    { icon: 'fa-archway', title: 'Infrastructure & Civil', desc: '...' } // Changed fa-bridge to fa-archway
-];S
