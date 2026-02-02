@@ -347,3 +347,76 @@ body {
         font-size: 0.9rem;
     }
 }
+/* --- style.css - Add to the bottom --- */
+
+/* Hamburger Menu Styling (Hidden on Desktop) */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+/* Hide the mobile login link on desktop */
+.mobile-login {
+    display: none;
+}
+
+/* --- MOBILE RESPONSIVE MEDIA QUERY --- */
+@media (max-width: 768px) {
+    /* Show Hamburger */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Hide the desktop login button to save space */
+    .desktop-login {
+        display: none;
+    }
+
+    /* Show the login link inside the menu instead */
+    .mobile-login {
+        display: block;
+    }
+
+    /* Style the Nav Links as a Dropdown */
+    .nav-links {
+        position: absolute;
+        top: 100%; /* Push it directly below the navbar */
+        left: 0;
+        width: 100%;
+        background-color: #1a2533; /* Match navbar color */
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        display: none; /* Hidden by default on mobile */
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* When the 'active' class is added via JS, show the menu */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-links li a {
+        display: block;
+        width: 100%;
+        font-size: 1.2rem;
+    }
+}
