@@ -1,32 +1,29 @@
-// script.js
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- NAVBAR LOGIC ---
+    // --- 1. NEW: Hamburger Menu Logic ---
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
 
-    if(hamburger && navLinks) {
+    if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
+            // Toggle the .active class on the menu and the button
             navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
         });
     }
 
-    // --- CAROUSEL LOGIC (Your existing code) ---
+    // --- 2. EXISTING: Slideshow Logic ---
     const slides = document.querySelectorAll('.slide');
     const playBtn = document.getElementById('playBtn');
     const pauseBtn = document.getElementById('pauseBtn');
 
-    // Configuration
     let currentSlideIndex = 0;
-    const slideIntervalTime = 4000;
-    let slideInterval;
+    const slideIntervalTime = 4000; 
+    let slideInterval; 
     let isPlaying = true;
 
-    // Function to show a specific slide
     function showSlide(index) {
-        slides.forEach(slide => {
-            slide.classList.remove('active-slide');
-        });
+        slides.forEach(slide => slide.classList.remove('active-slide'));
 
         if (index >= slides.length) {
             currentSlideIndex = 0;
@@ -64,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(playBtn) playBtn.addEventListener('click', startSlideshow);
     if(pauseBtn) pauseBtn.addEventListener('click', pauseSlideshow);
 
-    // Initialize
+    // Start immediately
     isPlaying = false;
     startSlideshow();
 });

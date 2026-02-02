@@ -420,3 +420,79 @@ body {
         font-size: 1.2rem;
     }
 }
+/* --- RESPONSIVE NAVBAR STYLES (Add to bottom of style.css) --- */
+
+/* Default: Hide Hamburger and Mobile-only items on Desktop */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.mobile-only {
+    display: none;
+}
+
+/* Hamburger Icon Styling */
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background-color: white;
+    border-radius: 3px;
+}
+
+/* --- MOBILE VIEW (Screens smaller than 768px) --- */
+@media (max-width: 768px) {
+    
+    /* Show Hamburger Icon */
+    .hamburger {
+        display: block;
+    }
+
+    /* Hide the standalone Desktop Login button */
+    .desktop-only {
+        display: none;
+    }
+
+    /* Show the Login link inside the menu */
+    .mobile-only {
+        display: block;
+        margin-top: 10px;
+    }
+
+    /* Transform the row of links into a vertical dropdown menu */
+    .nav-links {
+        position: fixed;
+        left: -100%; /* Hide off-screen by default */
+        top: 70px; /* Push below navbar height */
+        flex-direction: column;
+        background-color: #1a2533; /* Match navbar color */
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 20px 0;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Class added by JS to show the menu */
+    .nav-links.active {
+        left: 0; 
+    }
+
+    .nav-links li {
+        margin: 20px 0;
+    }
+    
+    /* Optional: Animate Hamburger to X */
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
