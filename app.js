@@ -40,14 +40,13 @@ const testimonialsData = [
 
 // Homepage Route
 app.get('/', (req, res) => {
-    // Pass the data to the index.ejs view
-    res.render('index', {
+    res.render('index', { // This looks for views/index.ejs
         pageTitle: 'Home - Urban Builders',
         expertise: expertiseData,
-        projects: projectsData,
-        testimonials: testimonialsData
+        // ... other data
     });
 });
+// ...
 
 
 // Start Server

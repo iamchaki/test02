@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title> <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-flex">
+            <a href="#" class="logo">
+                <span class="logo-icon">🏗️</span>
+                <span class="logo-text">URBAN<br>BUILDERS</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <a href="#Login" class="btn-quote">Login</a>
+        </div>
+    </nav>
+
+    <section class="carousel-section" id="home">
+        <div class="carousel-container">
+            <div class="slide active-slide fade">
+                <img src="images/slide1.png" alt="Bridge Construction at Sunset">
+                <div class="caption">BUILDING BRIDGES TO THE FUTURE</div>
+            </div>
+
+            <div class="slide fade">
+                <img src="images/slide2.png" alt="Residential Building Construction">
+                <div class="caption">RESIDENTIAL EXCELLENCE</div>
+            </div>
+
+            <div class="slide fade">
+                <img src="images/slide3.png" alt="Steel Structure Construction Site">
+                <div class="caption">INDUSTRIAL STRENGTH SOLUTIONS</div>
+            </div>
+
+            <div class="carousel-controls">
+                <button id="pauseBtn" class="control-btn">⏸ Pause</button>
+                <button id="playBtn" class="control-btn" style="display: none;">▶ Play</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="main-content-section" id="about">
+        <div class="container">
+            
+            <div class="commitment-wrapper">
+                <div class="commitment-text">
+                    <h2>OUR COMMITMENT TO EXCELLENCE</h2>
+                    <p>Urban Builders has successfully completed numerous construction projects, specializing in Residential, Commercial, and Infrastructure sectors. Our team is dedicated to delivering high-quality results with a focus on safety, innovation, and client satisfaction. We build with integrity and precision, ensuring every project stands the test of time.</p>
+                </div>
+                <div class="commitment-image">
+                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Construction Team">
+                </div>
+            </div>
+
+            <div class="expertise-wrapper" id="services">
+                <h2>OUR EXPERTISE</h2>
+                <div class="cards-container">
+                    <% expertise.forEach(function(item) { %>
+                        <div class="card">
+                            <div class="icon-wrapper">
+                                <i class="fas <%= item.icon %>"></i>
+                            </div>
+                            <h3><%= item.title %></h3>
+                            <p><%= item.desc %></p>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
